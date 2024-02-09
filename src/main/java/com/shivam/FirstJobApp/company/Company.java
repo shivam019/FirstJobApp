@@ -2,6 +2,7 @@ package com.shivam.FirstJobApp.company;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.shivam.FirstJobApp.job.Job;
+import com.shivam.FirstJobApp.review.Review;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -16,15 +17,27 @@ public class Company {
 
     //Every Company has a List of Job
     //CREATE NEW TABLE, RELATIONSHIP WILL BE MANAGE IN NEW TABLE
-    @OneToMany(mappedBy = "company")
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
     @JsonIgnore
     private List<Job> jobs;
 
+    @OneToMany(mappedBy = "company", fetch = FetchType.EAGER)
+    @JsonIgnore
 
-    //private List<Reviews> reviews;
+    private List<Review> reviews;
+
 
     public Company() {
     }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
+    }
+
 
     public Long getId() {
         return id;
@@ -57,4 +70,6 @@ public class Company {
     public void setJobs(List<Job> jobs) {
         this.jobs = jobs;
     }
+
+
 }

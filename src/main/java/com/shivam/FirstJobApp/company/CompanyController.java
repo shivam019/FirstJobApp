@@ -1,5 +1,9 @@
 package com.shivam.FirstJobApp.company;
 
+import com.shivam.FirstJobApp.job.Job;
+import com.shivam.FirstJobApp.job.JobService;
+import com.shivam.FirstJobApp.review.Review;
+import com.shivam.FirstJobApp.review.ReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +16,15 @@ import java.util.List;
 public class CompanyController {
 
 private CompanyService companyService;
+private ReviewService reviewService;
+private JobService jobService;
+
 
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
     }
+
+
 
     @GetMapping
     public ResponseEntity<List<Company>>getAllCompanies(){
